@@ -1,5 +1,9 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{caption}
+\usepackage{adjustbox}
+\usepackage[none]{hyphenat}
+
 \linespread{2}
 \title{Senior Research Rough Draft}
 \author{skibap }
@@ -31,13 +35,80 @@
 \subsection{Significance} Social media has been a popular method of communicating with people for several years now. Despite the efforts of the companies behind these social media services, it does not take long after creating an account to be exposed to someone advertising themself to you via direct messaging or a follow notification. The objective of this research is to measure the effectiveness of spam marketing via social media as well as recording the strength of anti spam techniques used by social media services.
 
 \subsection{Background} Social media spam is on the rise, becoming the preferred communication medium among spammers (Nextgate, 2013) due to the effective security infrastructure that email has developed to block spam emails (Syverson, Paul 2008). Additionally, users of social media sites are far more trusting of the content they see on these sites compared to emails or random web pages (Cao, 2014). Not only is the spam protection on social media weaker than email, but spammers have figured out methods to use the features social media services provide to deliver spam in completely new ways (Cheng, et al., 2014). 
-In the past, spammers could only send direct messages to the masses they were trying to reach.  Follow bots, stolen accounts, fake accounts, spam apps, and like-jacking are all feasible due to the features provided by social media platforms (Nextgate, 2013). Follow bots will be the main focus of this research. This involves following a large number of people, thereby triggering a notification on their account, in hopes that their curiosity will lead them to click on a link in the spammer’s profile. 
+In the past, spammers could only send direct messages to the masses they were trying to reach.  Follow bots, stolen accounts, fake accounts, spam apps, and like-jacking are all feasible due to the features provided by social media platforms (Nextgate, 2013). Follow bots will be the main focus of this research. This involves following a large number of people, thereby triggering a notification on their account, in hopes that their curiosity will lead them to click on a link in the spammerâ€™s profile. 
 
 \section{Methods}
-\subsection{Blog}
+
+There are three main components to the research project; the blogs, the social media follow bots, and analytical software to view traffic flow to the blogs.
+\subsection{Blogs}
+The research will consist of two identical blogs, one which will be advertised heavily through the social media spam campaign, the other serving as a control to analyse how the same blog would do organically. To facilitate the creation of the blogs, I utilized the Jekyll static blog generator software. This software allows for the creation of blogs without the need for a database, it supports many themes and plug-ins which speed up the blog creation process. Since the sites are static, that allowed me to deploy the blogs on Github Pages, a free hosting service created by Github. 
+\\
+I named the two blogs citrusandtoast.com and lemonsandtoast.com, I wanted the names to be as similar as possible to lower the chance the name effecting traffic flow. Blog posts are inspired by clickbait news websites such as Buzz Feed and Upworthy, each post is a list of random information accompanied with stock images from the pixabay.com. 
+
 \subsection{Bot Software}
+Although there are commercial follow bots for social media sites like Twitter, I decided to write my own using the Ruby Programming Language and API wrappers to simplify requests to the social media servers. Two bots were deployed, one for Twitter and the other for Tumblr.
+\\
+Both bots operate in a similar manner, the first step is to request a list of the trending topics on the social media platforms at the time. After getting the trending topics, I can search for people using that search tag. After the search, I pull 15 names and then follow those accounts, pausing for 15 minutes in the middle to prevent going over the data caps by the social media platforms. In the case of Tumblr, I also require the help of Selenium Webdriver, which deploys Firefox to go on Tumblr's explore page and requests the text in the trending area for a list of trending topics. \\
+Twitter's site provides information on what not to do when using their API. This list includes, not going over their 15 requests in a 15 minute window data cap, not posting only tweets that contain a link, and not going over their 5000 person follow limit. Therefore, I have made adjustments to maintain good status with Twitter and have applied the same methods to Tumblr.  
+
 \subsection{Analytics}
+In order to analyse the success of the spam tactics, some kind of analytical software is required. Google Analytics is by far the most popular and reliable analytical software for tracking web traffic. Using Google Analytics I can view the location and activity of my users, as well as where they came from, known as a referral. If they came from Twitter, Tumblr, Google, ect. then the analytical software will record that data.
+
 \section{Results}
+
+From the date of March 30th to April 10th the Twitter bot has followed 2,506 Twitter users. In return the Citrus and Toast has gained back 192 followers. One caveat is that not all the users that have followed the page back are legitimate users but many of them are. In the same period of time the Tumblr bot followed 1362 Tumblr profiles, the number was lower because of Tumblr's stricter data rates compared to Twitter as well as the unavoidable delay from having to launch Firefox every 15 requests. In return the Tumblr page gained 37 viewers, an indicator that users on Tumblr are less likely to follow unknown blogs. 
+\\
+The results of the study so far show a positive correlation with using spam tactics and web traffic. The tables below show the number of sessions each day comparing citrusandtoast.com and lemonsandtoast.com. Note: That week 3 data is unavailable at the moment.
+\newpage
+
+\begin{adjustbox}{width=1.2\textwidth,center}
+\begin{tabular}{| c | c | c | c | c | c | c | c |}
+  \hline
+  \multicolumn{8}{|c|}{Citrus and Toast} \\
+  \hline
+  Week \# & Sunday & Monday & Tuesday & Wednesday & Thursday & Friday & Saturday \\ 
+  \hline
+  Week 1 & 0 & 0 & 0 & 0 & 2 & 16 & 24 \\
+  Week 2 & 7 & 5 & 6 & 9 & 5 & 8 & 4 \\
+  Week 3 &  &  &  &  &  &  &  \\
+  \hline
+\end{tabular}
+\end{adjustbox}
+
+\vspace{0.5in}
+
+\begin{adjustbox}{width=1.2\textwidth,center,caption={blah \\ blah}}
+\begin{tabular}{| c | c | c | c | c | c | c | c |}
+  \hline
+  \multicolumn{8}{|c|}{Lemons and Toast} \\
+  \hline
+  Week \# & Sunday & Monday & Tuesday & Wednesday & Thursday & Friday & Saturday \\ 
+  \hline
+  Week 1 & 0 & 0 & 0 & 0 & 1 & 2 & 2 \\
+  Week 2 & 2 & 1 & 0 & 0 & 1 & 0 & 0 \\
+  Week 3 &  &  &  &  &  &  &  \\
+  \hline
+\end{tabular}
+\end{adjustbox}
+
+\vspace{0.5in}
+
+\noindent
+In addition, Google Analytics records data on where traffic is coming from. Allowing for the comparison of traffic to follow ratio between Tumblr and Twitter. The table below shows that, despite Tumblrs lower ratio of following to followers, it has a much higher ratio of spamming to conversion. 
+
+\begin{center}
+\begin{tabular}{| c | c | c | c |}
+  \hline
+  Site & Following & Traffic Sessions & Ratio \\
+  \hline
+  Twitter & 2506 & 16 & $1/156$\\
+  Tumblr & 1362 & 15 & $1/91$\\
+  
+  \hline
+\end{tabular}
+\end{center}
+
+\newpage
 \section{Discussion}
 \newpage
 \begin{thebibliography}{9}
